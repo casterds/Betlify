@@ -1,6 +1,5 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const fs = require("fs");
-const mnemonic = fs.readFileSync(".secret").toString().trim();
+const {  MNEMONIC } = process.env;
 
 module.exports = {
   networks: {
@@ -12,7 +11,7 @@ module.exports = {
     matic: {
       provider: () =>
         new HDWalletProvider(
-          mnemonic,
+          MNEMONIC,
           `https://matic-mumbai.chainstacklabs.com`
         ),
       network_id: 80001,
@@ -20,6 +19,22 @@ module.exports = {
       timeoutBlocks: 200,
       skipDryRun: true,
       chainId: 80001,
+    },
+    gnosis: {
+      provider: function () {
+        return new HDWalletProvider(MNEMONIC, "https://rpc.gnosischain.com");
+      },
+      network_id: 100,
+      gas: 500000,
+      gasPrice: 1000000000,
+    },
+    chiado: {
+      provider: function () {
+        return new HDWalletProvider(MNEMONIC, "https://rpc.chiadochain.net");
+      },
+      network_id: 10200,
+      gas: 500000,
+      gasPrice: 1000000000,
     },
   },
   contracts_directory: "./contracts",
