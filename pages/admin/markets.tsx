@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import React, { useCallback, useEffect, useState } from "react";
-import { MarketProps } from "..";
+import { MarketProps } from "../polymarket";
 import { AdminMarketCard } from "../../components/AdminMarketCard";
 import Navbar from "../../components/Navbar";
 import { useData } from "../../contexts/DataContext";

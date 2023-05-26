@@ -2,7 +2,7 @@ import Img from "next/image";
 import Link from "next/link";
 import React from "react";
 import Web3 from "web3";
-import { MarketProps } from "../pages";
+import { MarketProps } from "../pages/polymarket";
 
 export const MarketCard: React.FC<MarketProps> = ({
   id,
