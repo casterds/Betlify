@@ -1,5 +1,5 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const {  MNEMONIC } = process.env;
+const { MNEMONIC } = process.env;
 
 module.exports = {
   networks: {
@@ -22,7 +22,12 @@ module.exports = {
     },
     gnosis: {
       provider: function () {
-        return new HDWalletProvider(MNEMONIC, "https://rpc.gnosischain.com");
+        return new HDWalletProvider({
+          mnemonic: {
+            phrase: MNEMONIC,
+          },
+          providerOrUrl: "https://rpc.gnosischain.com",
+        });
       },
       network_id: 100,
       gas: 500000,
@@ -30,7 +35,14 @@ module.exports = {
     },
     chiado: {
       provider: function () {
-        return new HDWalletProvider(MNEMONIC, "https://rpc.chiadochain.net");
+        return new HDWalletProvider({
+          mnemonic: {
+            phrase: MNEMONIC,
+          },
+          providerOrUrl: "https://rpc.chiadochain.net",
+          numberOfAddresses: 1,
+          shareNonce: true,
+        });
       },
       network_id: 10200,
       gas: 500000,
