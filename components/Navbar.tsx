@@ -22,14 +22,14 @@ function Navbar() {
 
   return (
     <>
-      <nav className="w-full h-16 mt-auto px-4">
+      <nav className="w-full h-16 mt-auto px-2 md:px-4  pb-3 bg-blue-200">
         <div className="flex flex-row justify-between items-center h-full">
           <Link href="/" passHref>
-            <span className="font-semibold text-xl cursor-pointer">
+            <span className="font-bold sm:text-xl  md:text-2xl cursor-pointer ">
               {pathname && pathname.includes("polymarket") ? (
                 <p>Polymarket</p>
               ) : (
-                <p>Azuro Betting Website</p>
+                <p>Betlify</p>
               )}
             </span>
           </Link>
@@ -97,11 +97,11 @@ const TabButton = ({
   return (
     <Link href={url} passHref>
       <div
-        className={`h-full px-4 flex items-center border-b-2 font-semibold hover:border-blue-700 hover:text-blue-700 cursor-pointer ${
+        className={`sm:text-sm md:text-lg md:p-2 m-1 md:m-2 flex items-center hover:bg-blue-100  hover:text-gray-700 cursor-pointer ${
           isActive
-            ? "border-blue-700 text-blue-700 text-lg font-semibold"
-            : "border-white text-gray-400 text-lg"
-        }`}
+            ? "text-black md:text-lg  font-semibold"
+            : "text-gray-500 sm:text-sm lg:text-lg "
+        } `}
       >
         <span>{title}</span>
       </div>

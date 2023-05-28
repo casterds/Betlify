@@ -130,7 +130,11 @@ export default function BetsHistory() {
   }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center text-2xl items-center mt-4">
+        Loading...
+      </div>
+    );
   }
 
   return (
@@ -139,7 +143,7 @@ export default function BetsHistory() {
         {data?.bets.map((bet) => (
           <div
             key={bet.id}
-            className="lg:grid lg:lg:grid-cols-[auto_minmax(400px,520px)] justify-items-start bg-gray-50 border border-gray-200 overflow-hidden rounded-xl"
+            className=" lg:grid lg:lg:grid-cols-[auto_minmax(400px,520px)] justify-items-start border border-gray-200 overflow-hidden rounded-xl"
           >
             <BetInfo data={bet} />
             <GameInfo game={bet.game} />

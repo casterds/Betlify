@@ -106,7 +106,7 @@ const Admin = () => {
               autoComplete="off"
             />
             {loading ? (
-              <span className="text-center pt-5 pb-3 text-xl font-bold">
+              <span className="flex justify-center text-2xl items-center mt-4">
                 Loading...
               </span>
             ) : (

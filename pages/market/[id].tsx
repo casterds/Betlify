@@ -92,7 +92,9 @@ const Details = () => {
         {dataLoading ? (
           <div className="flex flex-col justify-center items-center h-full w-full pt-10">
             <div className="text-center">
-              <div className="text-3xl font-bold">Loading...</div>
+              <div className="flex justify-center text-2xl items-center mt-4">
+                Loading...
+              </div>
             </div>
           </div>
         ) : (
@@ -146,7 +148,7 @@ const Details = () => {
             <div className="flex flex-col space-y-3">
               <div className="w-full flex flex-row mt-5">
                 <div className="w-2/3 border rounded-lg p-1 pb-4 border-gray-300 mr-2">
-                  <ChartContainer questionId={market?.id ?? "0"} />
+                  {/* <ChartContainer questionId={market?.id ?? "0"} /> */}
                 </div>
                 <div className="w-1/3 rounded-lg border border-gray-300 ml-2">
                   <div className="flex flex-col items-start p-6">

@@ -62,7 +62,7 @@ const Markets = ({ game, markets }) => {
                     {outcomes.map((outcome) => (
                       <div
                         key={outcome.selectionName}
-                        className="flex justify-between py-2 px-3 bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300 transition"
+                        className="bg-gradient-to-r from-cyan-100 to-blue-100 hover:bg-gradient-to-r hover:from-blue-200 hover:to-cyan-300 flex justify-between py-2 px-3 bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300 transition"
                         style={{ width: `calc(100% / ${outcomes.length})` }}
                         onClick={() => handleOutcomeClick(outcome)}
                       >
@@ -96,13 +96,19 @@ export default function Game() {
   const { loading, game, markets } = useSportEvent();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center text-2xl items-center pt-4">
+        Loading...
+      </div>
+    );
   }
 
   return (
     <main>
-      <GameInfo {...game} />
-      <Markets game={game} markets={markets} />
+      <div className="px-2">
+        <GameInfo {...game} />
+        <Markets game={game} markets={markets} />
+      </div>
     </main>
   );
 }

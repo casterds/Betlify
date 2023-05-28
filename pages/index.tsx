@@ -34,7 +34,7 @@ const GameCard = ({
   startsAt,
 }: GameCardProp) => (
   <Link href={`/games/${id}`}>
-    <div className=" border border-gray-300 rounded-lg hover:bg-gray-100 transition p-2">
+    <div className=" bg-gradient-to-r from-cyan-100 to-blue-100 hover:bg-gradient-to-r hover:from-blue-200 hover:to-cyan-300 border border-gray-400 m-2  rounded-lg hover:bg-gray-100 transition p-2">
       <div className="flex justify-between text-sm">
         <span>{sport.name}</span>
         <span>{dayjs(Number(startsAt) * 1000).format("DD MMM HH:mm")}</span>
@@ -60,12 +60,16 @@ export default function Home() {
   const { loading, data } = useSportEvents();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center text-2xl items-center pt-4">
+        Loading...
+      </div>
+    );
   }
 
   return (
     <main>
-      <div className="grid lg:grid-cols-1 sm:lg:grid-cols-2 md:lg:grid-cols-3 lg:lg:grid-cols-4 gap-2">
+      <div className="grid p-3 lg:grid-cols-1 sm:lg:grid-cols-2 md:lg:grid-cols-3 lg:lg:grid-cols-4 gap-2">
         {data.games.map((game: GameCardProp) => {
           return <GameCard key={game.id} {...game} />;
         })}

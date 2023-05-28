@@ -4,15 +4,7 @@ import { DataProvider } from "../contexts/DataContext";
 import * as ethers from "ethers";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import "../styles/globals.css";
-import {
-  DAppProvider,
-  Gnosis,
-  Mainnet,
-  Polygon,
-  useEthers,
-} from "@usedapp/core";
-import Link from "next/link";
-import { useState } from "react";
+import { DAppProvider, Gnosis, useEthers } from "@usedapp/core";
 import Navbar from "../components/Navbar";
 
 const config = {
@@ -35,7 +27,7 @@ export const ConnectButton = () => {
 
   return (
     <button
-      className="button bg-blue-500 text-slate-100 font-bold px-2 rounded-lg hover:bg-blue-700"
+      className="bg-gradient-to-r from-cyan-400 to-blue-600 hover:bg-gradient-to-r hover:from-blue-600 hover:to-cyan-400 button bg-blue-500 text-slate-100 font-bold px-3 py-2 mt-2 ml-2 rounded-lg hover:bg-blue-700"
       onClick={() => action()}
     >
       {title}
@@ -54,7 +46,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <DAppProvider config={config}>
         <ApolloProvider client={apolloClient}>
           <Navbar connectButton={ConnectButton} />
-          <Component {...pageProps} />
+          <div className="bg-cyan-50 pb-5">
+            <Component {...pageProps} />
+          </div>
         </ApolloProvider>
       </DAppProvider>
     </DataProvider>
