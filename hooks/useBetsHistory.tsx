@@ -66,7 +66,7 @@ export default function useBetsHistory() {
     `,
     {
       variables: {
-        first: 10, // in this tutorial, only 10 bets are loaded. In production, pagination loading should be implemented to avoid heavy requests which can lead to GraphQL errors
+        first: 10,
         where: {
           actor: account?.toLowerCase(),
         },

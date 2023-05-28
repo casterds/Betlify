@@ -10,6 +10,11 @@ module.exports = {
       port: 8545,
       network_id: "*",
     },
+    GnosisFork: {
+      host: "GnosisFork",
+      port: 8545,
+      network_id: 999,
+    },
     matic: {
       provider: () =>
         new HDWalletProvider(

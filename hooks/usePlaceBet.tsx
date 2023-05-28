@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as ethers from "ethers";
 import {
   Gnosis,
@@ -10,33 +10,32 @@ import {
 } from "@usedapp/core";
 
 import LP_ABI from "../lpABI";
-const USDT_DECIMALS = 6;
-const USDT_ADDRESS = "0x4ECaBa5870353805a9F068101A40E0f32ed605C6";
+const WXDAI_DECIMALS = 18;
+const WXDAI_ADDRESS = "0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d";
 const LP_ADDRESS = "0x204e7371Ade792c5C006fb52711c50a7efC843ed";
 const CORE_ADDRESS = "0xC95C831c7bDb0650b8cD5F2a542b263872d8ed0e";
-const USDTContract = new ethers.Contract(USDT_ADDRESS, ERC20Interface);
+const WXDAIContract = new ethers.Contract(WXDAI_ADDRESS, ERC20Interface);
 const lpContract = new ethers.Contract(LP_ADDRESS, LP_ABI);
 
 export default function usePlaceBet({ outcome, onBetPlace }) {
   const [amount, setAmount] = useState("");
-  const [id, setId] = useState();
   const { account, chainId } = useEthers();
 
   const isRightChain = Number(chainId) == Gnosis.chainId;
 
-  const rawBalance = useTokenBalance(USDT_ADDRESS, account);
+  const rawBalance = useTokenBalance(WXDAI_ADDRESS, account);
   const balance = rawBalance
-    ? ethers.utils.formatUnits(rawBalance, USDT_DECIMALS)
+    ? ethers.utils.formatUnits(rawBalance, WXDAI_DECIMALS)
     : "0";
 
-  const rawAllowance = useTokenAllowance(USDT_ADDRESS, account, LP_ADDRESS);
+  const rawAllowance = useTokenAllowance(WXDAI_ADDRESS, account, LP_ADDRESS);
   const isAllowanceFetching = rawAllowance === undefined;
   const allowance =
-    rawAllowance && ethers.utils.formatUnits(rawAllowance, USDT_DECIMALS);
+    rawAllowance && ethers.utils.formatUnits(rawAllowance, WXDAI_DECIMALS);
   const isApproveRequired = +allowance < +amount;
 
   const { state: approveState, send: _approve } = useContractFunction(
-    USDTContract,
+    WXDAIContract,
     "approve",
     { transactionName: "Approve" }
   );
@@ -55,7 +54,7 @@ export default function usePlaceBet({ outcome, onBetPlace }) {
     transactionName: "Bet",
   });
 
-  const placeBet = () => {
+  const placeBet = async () => {
     const { conditionId, outcomeId, odds } = outcome;
 
     const slippage = 5; // 5%
@@ -66,11 +65,11 @@ export default function usePlaceBet({ outcome, onBetPlace }) {
       oddsDecimals
     );
 
-    const amountDecimals = 6; // USDT decimals
+    const amountDecimals = 18; // USDT decimals
     const rawAmount = ethers.utils.parseUnits(amount, amountDecimals);
 
     const deadline = Math.floor(Date.now() / 1000) + 2000; // the time (in seconds) within which the transaction should be submitted
-    const affiliate = "0x0000000000000000000000000000000000000000"; // your affiliate wallet address
+    const affiliate = "0x4639155fb94e983a13f76be68845012f7eDCA46f"; // your affiliate wallet address
 
     const data = ethers.utils.defaultAbiCoder.encode(
       ["uint256", "uint64", "uint64"],
