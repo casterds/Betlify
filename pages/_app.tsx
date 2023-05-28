@@ -44,7 +44,7 @@ export const ConnectButton = () => {
 };
 
 const apolloClient = new ApolloClient({
-  uri: "https://thegraph.azuro.org/subgraphs/name/azuro-protocol/azuro-api-polygon",
+  uri: "https://thegraph.azuro.org/subgraphs/name/azuro-protocol/azuro-api-gnosis",
   cache: new InMemoryCache(),
 });
 

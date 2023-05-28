@@ -72,7 +72,10 @@ const BetInfo = ({ data }) => {
         <div>
           <div className="text-gray-400">Bet Amount</div>
           <div className="mt-1 font-semibold">
-            {+parseFloat(amount).toFixed(2)} USDT
+            {+parseFloat(amount) > 1
+              ? +parseFloat(amount).toFixed(2)
+              : +parseFloat(amount).toPrecision(2)}{" "}
+            WXDAI
           </div>
         </div>
       </div>
@@ -80,7 +83,10 @@ const BetInfo = ({ data }) => {
         <div>
           <div className="text-gray-400">Possible Win</div>
           <div className="mt-1 font-semibold">
-            {+parseFloat(potentialPayout).toFixed(2)} USDT
+            {+parseFloat(potentialPayout) > 1
+              ? +parseFloat(potentialPayout).toFixed(2)
+              : +parseFloat(potentialPayout).toPrecision(2)}{" "}
+            WXDAI
           </div>
         </div>
         <div>
