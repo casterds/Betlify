@@ -130,13 +130,6 @@ export default function BetsHistory() {
   return (
     <main>
       <div className="space-y-2">
-        <button
-          onClick={() => {
-            console.log(data);
-          }}
-        >
-          BUTTON
-        </button>
         {data?.bets.map((bet) => (
           <div
             key={bet.id}
