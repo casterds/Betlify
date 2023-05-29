@@ -1,0 +1,610 @@
+{
+  "contractName": "IBet",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "BetNotExists",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "bettor",
+          "type": "address"
+        },
+        {
+          "internalType": "uint128",
+          "name": "amount",
+          "type": "uint128"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "affiliate",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct IBet.BetData",
+          "name": "betData",
+          "type": "tuple"
+        }
+      ],
+      "name": "putBet",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "resolvePayout",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint128",
+          "name": "payout",
+          "type": "uint128"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "viewPayout",
+      "outputs": [
+        {
+          "internalType": "uint128",
+          "name": "payout",
+          "type": "uint128"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"BetNotExists\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"bettor\",\"type\":\"address\"},{\"internalType\":\"uint128\",\"name\":\"amount\",\"type\":\"uint128\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"affiliate\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct IBet.BetData\",\"name\":\"betData\",\"type\":\"tuple\"}],\"name\":\"putBet\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"resolvePayout\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint128\",\"name\":\"payout\",\"type\":\"uint128\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"viewPayout\",\"outputs\":[{\"internalType\":\"uint128\",\"name\":\"payout\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"putBet(address,uint128,(address,bytes))\":{\"params\":{\"amount\":\"amount of tokens to bet\",\"betData\":\"customized bet data\",\"bettor\":\"wallet for emitting bet token\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"putBet(address,uint128,(address,bytes))\":{\"notice\":\"Register new bet.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/interfaces/IBet.sol\":\"IBet\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/interfaces/IBet.sol\":{\"keccak256\":\"0x4ea613870c3ffc86fe6f008e8e2ed792d89cdc8fb6153230bf6f303090034a2e\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://8f4ca36e095be1b145e5e62a4a5e0416abd47d4b31a46b453ed2fafc357e5963\",\"dweb:/ipfs/QmWAiwZjxnsoZ25JqrZGsQw6BKV2Brsf4mCHtmvTLSTkcE\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: GPL-3.0\n\npragma solidity ^0.8.9;\n\ninterface IBet {\n    struct BetData {\n        address affiliate; // address indicated as an affiliate when placing bet\n        bytes data; // core-specific customized bet data\n    }\n\n    error BetNotExists();\n\n    /**\n     * @notice Register new bet.\n     * @param  bettor wallet for emitting bet token\n     * @param  amount amount of tokens to bet\n     * @param  betData customized bet data\n     */\n    function putBet(\n        address bettor,\n        uint128 amount,\n        BetData calldata betData\n    ) external returns (uint256 tokenId);\n\n    function resolvePayout(\n        uint256 tokenId\n    ) external returns (address account, uint128 payout);\n\n    function viewPayout(uint256 tokenId) external view returns (uint128 payout);\n}\n",
+  "sourcePath": "/home/ridwan/bluelineDao/training-02/contracts/interfaces/IBet.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/interfaces/IBet.sol",
+    "exportedSymbols": {
+      "IBet": [
+        349
+      ]
+    },
+    "id": 350,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 312,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".9"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "37:23:3"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IBet",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 349,
+        "linearizedBaseContracts": [
+          349
+        ],
+        "name": "IBet",
+        "nameLocation": "72:4:3",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IBet.BetData",
+            "id": 317,
+            "members": [
+              {
+                "constant": false,
+                "id": 314,
+                "mutability": "mutable",
+                "name": "affiliate",
+                "nameLocation": "116:9:3",
+                "nodeType": "VariableDeclaration",
+                "scope": 317,
+                "src": "108:17:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 313,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "108:7:3",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 316,
+                "mutability": "mutable",
+                "name": "data",
+                "nameLocation": "195:4:3",
+                "nodeType": "VariableDeclaration",
+                "scope": 317,
+                "src": "189:10:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes_storage_ptr",
+                  "typeString": "bytes"
+                },
+                "typeName": {
+                  "id": 315,
+                  "name": "bytes",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "189:5:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_storage_ptr",
+                    "typeString": "bytes"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "BetData",
+            "nameLocation": "90:7:3",
+            "nodeType": "StructDefinition",
+            "scope": 349,
+            "src": "83:160:3",
+            "visibility": "public"
+          },
+          {
+            "errorSelector": "f67321e5",
+            "id": 319,
+            "name": "BetNotExists",
+            "nameLocation": "255:12:3",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 318,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "267:2:3"
+            },
+            "src": "249:21:3"
+          },
+          {
+            "documentation": {
+              "id": 320,
+              "nodeType": "StructuredDocumentation",
+              "src": "276:185:3",
+              "text": " @notice Register new bet.\n @param  bettor wallet for emitting bet token\n @param  amount amount of tokens to bet\n @param  betData customized bet data"
+            },
+            "functionSelector": "956053b6",
+            "id": 332,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "putBet",
+            "nameLocation": "475:6:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 328,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 322,
+                  "mutability": "mutable",
+                  "name": "bettor",
+                  "nameLocation": "499:6:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 332,
+                  "src": "491:14:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 321,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "491:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 324,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "523:6:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 332,
+                  "src": "515:14:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint128",
+                    "typeString": "uint128"
+                  },
+                  "typeName": {
+                    "id": 323,
+                    "name": "uint128",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "515:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint128",
+                      "typeString": "uint128"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 327,
+                  "mutability": "mutable",
+                  "name": "betData",
+                  "nameLocation": "556:7:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 332,
+                  "src": "539:24:3",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_BetData_$317_calldata_ptr",
+                    "typeString": "struct IBet.BetData"
+                  },
+                  "typeName": {
+                    "id": 326,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 325,
+                      "name": "BetData",
+                      "nameLocations": [
+                        "539:7:3"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 317,
+                      "src": "539:7:3"
+                    },
+                    "referencedDeclaration": 317,
+                    "src": "539:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_BetData_$317_storage_ptr",
+                      "typeString": "struct IBet.BetData"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "481:88:3"
+            },
+            "returnParameters": {
+              "id": 331,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 330,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nameLocation": "596:7:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 332,
+                  "src": "588:15:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 329,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "588:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "587:17:3"
+            },
+            "scope": 349,
+            "src": "466:139:3",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "fc8196d6",
+            "id": 341,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "resolvePayout",
+            "nameLocation": "620:13:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 335,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 334,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nameLocation": "651:7:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 341,
+                  "src": "643:15:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 333,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "643:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "633:31:3"
+            },
+            "returnParameters": {
+              "id": 340,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 337,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "691:7:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 341,
+                  "src": "683:15:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 336,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "683:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 339,
+                  "mutability": "mutable",
+                  "name": "payout",
+                  "nameLocation": "708:6:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 341,
+                  "src": "700:14:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint128",
+                    "typeString": "uint128"
+                  },
+                  "typeName": {
+                    "id": 338,
+                    "name": "uint128",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "700:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint128",
+                      "typeString": "uint128"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "682:33:3"
+            },
+            "scope": 349,
+            "src": "611:105:3",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "2589867d",
+            "id": 348,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "viewPayout",
+            "nameLocation": "731:10:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 344,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 343,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nameLocation": "750:7:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 348,
+                  "src": "742:15:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 342,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "742:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "741:17:3"
+            },
+            "returnParameters": {
+              "id": 347,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 346,
+                  "mutability": "mutable",
+                  "name": "payout",
+                  "nameLocation": "790:6:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 348,
+                  "src": "782:14:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint128",
+                    "typeString": "uint128"
+                  },
+                  "typeName": {
+                    "id": 345,
+                    "name": "uint128",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "782:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint128",
+                      "typeString": "uint128"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "781:16:3"
+            },
+            "scope": 349,
+            "src": "722:76:3",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 350,
+        "src": "62:738:3",
+        "usedErrors": [
+          319
+        ],
+        "usedEvents": []
+      }
+    ],
+    "src": "37:764:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.20+commit.a1b79de6.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.14",
+  "updatedAt": "2023-05-29T11:39:23.171Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "putBet(address,uint128,(address,bytes))": {
+        "params": {
+          "amount": "amount of tokens to bet",
+          "betData": "customized bet data",
+          "bettor": "wallet for emitting bet token"
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "putBet(address,uint128,(address,bytes))": {
+        "notice": "Register new bet."
+      }
+    },
+    "version": 1
+  }
+}

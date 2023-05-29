@@ -18,6 +18,7 @@
     "@truffle/hdwallet-provider": "^1.6.0",
     "@types/canvasjs": "^1.9.7",
     "@types/plotly.js-dist-min": "^2.3.0",
+    "@uniswap/v3-periphery": "^1.4.3",
     "@usedapp/core": "^1.2.10",
     "autoprefixer": "^10.4.14",
     "chartjs-adapter-moment": "^1.0.0",

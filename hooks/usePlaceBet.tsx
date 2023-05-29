@@ -9,13 +9,12 @@ import {
   ERC20Interface,
 } from "@usedapp/core";
 
-import LP_ABI from "../lpABI";
+import AzuroABI from "../abis/AzuroBet.json";
 const WXDAI_DECIMALS = 18;
 const WXDAI_ADDRESS = "0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d";
-const LP_ADDRESS = "0x204e7371Ade792c5C006fb52711c50a7efC843ed";
-const CORE_ADDRESS = "0xC95C831c7bDb0650b8cD5F2a542b263872d8ed0e";
+const AzuroBet_Address = "0xB6C29Ae4AF0F1a221915D7E368C3fdda4934f177";
 const WXDAIContract = new ethers.Contract(WXDAI_ADDRESS, ERC20Interface);
-const lpContract = new ethers.Contract(LP_ADDRESS, LP_ABI);
+const AzuroContract = new ethers.Contract(AzuroBet_Address, AzuroABI.abi);
 
 export default function usePlaceBet({ outcome, onBetPlace }) {
   const [amount, setAmount] = useState("");
@@ -28,7 +27,11 @@ export default function usePlaceBet({ outcome, onBetPlace }) {
     ? ethers.utils.formatUnits(rawBalance, WXDAI_DECIMALS)
     : "0";
 
-  const rawAllowance = useTokenAllowance(WXDAI_ADDRESS, account, LP_ADDRESS);
+  const rawAllowance = useTokenAllowance(
+    WXDAI_ADDRESS,
+    account,
+    AzuroBet_Address
+  );
   const isAllowanceFetching = rawAllowance === undefined;
   const allowance =
     rawAllowance && ethers.utils.formatUnits(rawAllowance, WXDAI_DECIMALS);
@@ -47,10 +50,10 @@ export default function usePlaceBet({ outcome, onBetPlace }) {
     // to prevent the need to ask for approval before each bet, the user will be asked to approve a "maximum" amount
     const amount = ethers.constants.MaxUint256;
 
-    _approve(LP_ADDRESS, amount);
+    _approve(AzuroBet_Address, amount);
   };
 
-  const { send: _placeBet } = useContractFunction(lpContract, "bet", {
+  const { send: _placeBet } = useContractFunction(AzuroContract, "bet", {
     transactionName: "Bet",
   });
 
@@ -76,7 +79,7 @@ export default function usePlaceBet({ outcome, onBetPlace }) {
       [conditionId, outcomeId, rawMinOdds]
     );
 
-    _placeBet(CORE_ADDRESS, rawAmount, deadline, {
+    _placeBet(rawAmount, deadline, {
       affiliate,
       data,
     });

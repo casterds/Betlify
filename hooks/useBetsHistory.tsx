@@ -58,7 +58,7 @@ const QUERY = `
 `;
 
 export default function useBetsHistory() {
-  const { account } = useEthers();
+  const account = "0xB6C29Ae4AF0F1a221915D7E368C3fdda4934f177";
 
   return useQuery(
     gql`

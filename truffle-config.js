@@ -1,7 +1,7 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 const fs = require("fs");
 require("dotenv").config();
-const mnemonic = fs.readFileSync(".secret").toString().trim();
+//const mnemonic = fs.readFileSync(".secret").toString().trim();
 
 module.exports = {
   networks: {
@@ -18,7 +18,7 @@ module.exports = {
     matic: {
       provider: () =>
         new HDWalletProvider(
-          mnemonic,
+          [process.env.PRIVATE_KEY],
           `https://matic-mumbai.chainstacklabs.com`
         ),
       network_id: 80001,
@@ -26,6 +26,18 @@ module.exports = {
       timeoutBlocks: 200,
       skipDryRun: true,
       chainId: 80001,
+    },
+    Gnosis: {
+      provider: () =>
+        new HDWalletProvider(
+          [process.env.PRIVATE_KEY],
+          `https://rpc.gnosischain.com`
+        ),
+      network_id: 100,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true,
+      chainId: 100,
     },
   },
   contracts_directory: "./contracts",
